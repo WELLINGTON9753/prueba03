@@ -12,12 +12,12 @@ import ups.ejercicio_03_03.Model.Empresa;
  *
  * @author Diego
  */
-public class VentanaEmpresa extends javax.swing.JFrame {
+public class VentanaPrincipal extends javax.swing.JFrame {
 
     
-    public EmpresaController empresaController;
+    public final EmpresaController empresaController;
     
-    public VentanaEmpresa() {
+    public VentanaPrincipal() {
         initComponents();
         empresaController = new EmpresaController();
     }
@@ -262,7 +262,7 @@ public class VentanaEmpresa extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaEmpresa().setVisible(true);
+                new VentanaPrincipal().setVisible(true);
             }
         });
     }

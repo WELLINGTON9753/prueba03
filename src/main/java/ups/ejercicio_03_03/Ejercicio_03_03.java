@@ -5,8 +5,7 @@
 
 package ups.ejercicio_03_03;
 
-import ups.ejercicio_03_03.View.VentanaDepartamento;
-import ups.ejercicio_03_03.View.VentanaEmpresa;
+import ups.ejercicio_03_03.View.VentanaPrincipal;
 
 /**
  *
@@ -15,9 +14,7 @@ import ups.ejercicio_03_03.View.VentanaEmpresa;
 public class Ejercicio_03_03 {
 
     public static void main(String[] args) {
-        VentanaEmpresa ventanaEmpresa = new VentanaEmpresa();
+        VentanaPrincipal ventanaEmpresa = new VentanaPrincipal();
         ventanaEmpresa.setVisible(true);
-        VentanaDepartamento ventanaDepartamento = new VentanaDepartamento();
-        ventanaDepartamento.setVisible(true);
     }
 }
