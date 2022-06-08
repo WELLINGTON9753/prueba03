@@ -12,6 +12,8 @@ import ups.ejercicio_03_03.Model.Empresa;
  * @author Diego
  */
 public interface IEmpresaService {
-    public Empresa crearEmpresa();
+    public Empresa crearEmpresa(Empresa empresa);
     public List<Empresa> listarEmpresas();
+    public Empresa getEmpresaByCode(int codigo);
+    
 }

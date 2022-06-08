@@ -12,6 +12,7 @@ import ups.ejercicio_03_03.Model.Departamento;
  * @author Diego
  */
 public interface IDepartamentoService {
-    public Departamento crearDepartamento();
+    public Departamento crearDepartamento(Departamento departamento);
     public List<Departamento> listarDepartementos();
+    public Departamento getDepartamentoByCode(int codigo);
 }
