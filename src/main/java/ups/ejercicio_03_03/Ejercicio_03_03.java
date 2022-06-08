@@ -5,6 +5,8 @@
 
 package ups.ejercicio_03_03;
 
+import ups.ejercicio_03_03.View.VentanaEmpresa;
+
 /**
  *
  * @author Diego
@@ -12,6 +14,7 @@ package ups.ejercicio_03_03;
 public class Ejercicio_03_03 {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        VentanaEmpresa ventanaEmpresa = new VentanaEmpresa();
+        ventanaEmpresa.setVisible(true);
     }
 }

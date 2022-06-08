@@ -82,7 +82,7 @@ public class Empresa {
 
     @Override
     public String toString() {
-        return "Empresa{" + "codigo=" + codigo + ", nombre=" + nombre + ", nombreFundador=" + nombreFundador + ", pais=" + pais + ", direccion=" + direccion + ", fechaFundacion=" + fechaFundacion ;
+        return "Empresa{" + "codigo=" + codigo + ", nombre=" + nombre + ", nombreFundador=" + nombreFundador + ", pais=" + pais + ",\n direccion=" + direccion + ", fechaFundacion=" + fechaFundacion ;
     }
      
     public int mostrarAntiguedadEmpresa(int anioActual){
@@ -93,7 +93,7 @@ public class Empresa {
     }
     
     public String mostrarInformacion(int anioActual){
-        String infoEmpresa = this.toString() + ", Antiguedad: "+mostrarAntiguedadEmpresa(anioActual)+" }";
+        String infoEmpresa = this.toString() + ", Antiguedad: "+mostrarAntiguedadEmpresa(anioActual)+" años }";
         return infoEmpresa;
     }
 }
