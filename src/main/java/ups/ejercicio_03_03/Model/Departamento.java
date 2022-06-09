@@ -68,9 +68,9 @@ public class Departamento {
     
     public String mostrarInformacion(){
          if(this.gerente == null){
-            return "Departamento{" + "codigo=" + codigo + ", Nombre=" + Nombre + ", gerente=" + "Sin gerente" + ", empresa=" + empresa + ", ubicacion=" + ubicacion + '}';
+            return "Departamento{" + "codigo = " + codigo + ", Nombre = " + Nombre + ", gerente = " + "Sin gerente" + ", empresa = " + empresa.getNombre() + ", ubicacion = " + ubicacion + '}';
         }
-        return "Departamento{" + "codigo=" + codigo + ", Nombre=" + Nombre + ", gerente=" + gerente + ", empresa=" + empresa + ", ubicacion=" + ubicacion + '}';
+        return "Departamento{" + "codigo = " + codigo + ", Nombre = " + Nombre + ", gerente = " + gerente + ", empresa = " + empresa.getNombre() + ", ubicacion = " + ubicacion + '}';
     }
     
 }

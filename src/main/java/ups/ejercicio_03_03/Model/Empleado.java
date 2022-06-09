@@ -18,7 +18,7 @@ public class Empleado {
     private String nacionalidad;
     private String direccion;
     private String cargo;
-    private float saliario;
+    private float salario;
     private LocalDate fechaEntrada;
     private Departamento departamento;
 
@@ -29,7 +29,7 @@ public class Empleado {
         this.nacionalidad = nacionalidad;
         this.direccion = direccion;
         this.cargo = cargo;
-        this.saliario = saliario;
+        this.salario = saliario;
         this.fechaEntrada = fechaEntrada;
         this.departamento = departamento;
     }
@@ -82,12 +82,12 @@ public class Empleado {
         this.cargo = cargo;
     }
 
-    public float getSaliario() {
-        return saliario;
+    public float getSalario() {
+        return salario;
     }
 
-    public void setSaliario(float saliario) {
-        this.saliario = saliario;
+    public void setSalario(float salario) {
+        this.salario = salario;
     }
 
     public LocalDate getFechaEntrada() {
@@ -106,7 +106,7 @@ public class Empleado {
 
     @Override
     public String toString() {
-        return "Empleado{" + "cedula=" + cedula + ", nombre=" + nombre + ", fechaNacimiento=" + fechaNacimiento + ", nacionalidad=" + nacionalidad + ", direccion=" + direccion + ", cargo=" + cargo + ", saliario=" + saliario + ", fechaEntrada=" + fechaEntrada + ", departamento=" + departamento+" ";
+        return "Empleado{" + "cedula=" + cedula + ", nombre=" + nombre + ", fechaNacimiento=" + fechaNacimiento + ", nacionalidad=" + nacionalidad + ", direccion=" + direccion + ", cargo=" + cargo + ", salario=" + salario + ", fechaEntrada=" + fechaEntrada + ", departamento=" + departamento.getNombre()+" ";
     }
     
     public int calcularEdad(int anioActual){
@@ -114,19 +114,13 @@ public class Empleado {
         return edad;
     }
     
-    //antiguedad en la empresa
-    public int calcularAntiguedad(int anioActual){
-        
-        int antiguedad = anioActual - this.fechaEntrada.getYear();
-        return antiguedad;
-    }
     
     public void cambiarDepartamento ( Departamento departamento) {
         this.departamento = departamento;
     }
     
     public String mostrarInformacion(int anioActual){
-        String info = toString() + "\nedad actual empleado: "+calcularEdad(anioActual)+"\nAntiguedad del empleado: "+calcularAntiguedad(anioActual)+" }";
+        String info = toString() + "\nedad actual empleado: "+calcularEdad(anioActual)+" años }";
         return info;
     }
     

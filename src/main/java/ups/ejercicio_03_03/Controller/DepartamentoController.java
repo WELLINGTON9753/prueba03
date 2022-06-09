@@ -33,4 +33,25 @@ public class DepartamentoController {
         departamentoService.asignarGerente(codigo, empleado);
         
     }
+    
+     // Metodos validacion
+    
+    // valida que solo se ingresen numeros en el campo "codigo"
+    public boolean validarSoloNumeros(char codigo){
+        boolean flag = false;
+        if(Character.isDigit(codigo)){
+            flag = true;
+        }
+        return flag;
+    }
+    
+    // valida que solo se ingrese texto en el campo ------
+    public boolean validarSoloTexto(char texto){
+        boolean flag = false;
+        if(Character.isLetter(texto) || Character.isSpaceChar(texto) || Character.isUpperCase(texto)){
+            flag = true;
+        }
+        return flag;
+                
+    }
 }

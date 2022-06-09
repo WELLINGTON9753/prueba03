@@ -50,7 +50,7 @@ public class EmpresaController {
     // valida que solo se ingrese texto en el campo "fundador"
     public boolean validarSoloTexto(char texto){
         boolean flag = false;
-        if(Character.isLetter(texto) || Character.isSpaceChar(texto)){
+        if(Character.isLetter(texto) || Character.isSpaceChar(texto) || Character.isUpperCase(texto)){
             flag = true;
         }
         return flag;

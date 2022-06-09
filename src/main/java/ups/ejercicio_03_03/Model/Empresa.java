@@ -82,7 +82,7 @@ public class Empresa {
 
     @Override
     public String toString() {
-        return "Empresa{" + "codigo=" + codigo + ", nombre=" + nombre + ", nombreFundador=" + nombreFundador + ", pais=" + pais + ",\n direccion=" + direccion + ", fechaFundacion=" + fechaFundacion ;
+        return "Empresa{" + "codigo = " + codigo + ", nombre = " + nombre + ", nombreFundador = " + nombreFundador + ", pais = " + pais + ",\n direccion = " + direccion + ", fechaFundacion = " + fechaFundacion ;
     }
      
     public int mostrarAntiguedadEmpresa(int anioActual){

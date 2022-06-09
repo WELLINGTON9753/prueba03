@@ -41,4 +41,25 @@ public class EmpleadoController {
      public void cambiarDepartamento(String cedula, Departamento departamento){
         empleadoService.cambiarDepartamento(cedula, departamento);
     }
+     
+      // Metodos validacion
+    
+    // valida que solo se ingresen numeros en el campo "cedula"
+    public boolean validarSoloNumeros(char codigo){
+        boolean flag = false;
+        if(Character.isDigit(codigo)){
+            flag = true;
+        }
+        return flag;
+    }
+    
+    // valida que solo se ingrese texto en el campo "nombre"
+    public boolean validarSoloTexto(char texto){
+        boolean flag = false;
+        if(Character.isLetter(texto) || Character.isSpaceChar(texto) || Character.isUpperCase(texto)){
+            flag = true;
+        }
+        return flag;
+                
+    }
 }

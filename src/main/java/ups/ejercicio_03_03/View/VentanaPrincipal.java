@@ -5,7 +5,11 @@
 package ups.ejercicio_03_03.View;
 
 import java.time.LocalDate;
+import ups.ejercicio_03_03.Controller.DepartamentoController;
+import ups.ejercicio_03_03.Controller.EmpleadoController;
 import ups.ejercicio_03_03.Controller.EmpresaController;
+import ups.ejercicio_03_03.Model.Departamento;
+import ups.ejercicio_03_03.Model.Empleado;
 import ups.ejercicio_03_03.Model.Empresa;
 
 /**
@@ -16,10 +20,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     
     public final EmpresaController empresaController;
+    public final DepartamentoController departamentoController;
+    public final EmpleadoController empleadoController;
     
     public VentanaPrincipal() {
         initComponents();
         empresaController = new EmpresaController();
+        departamentoController = new DepartamentoController();
+        empleadoController = new EmpleadoController();
     }
 
     /**
@@ -239,16 +247,32 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jLabel16.setText("Gerente");
 
+        jTextFieldCodigoDepartamento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldCodigoDepartamentoKeyReleased(evt);
+            }
+        });
+
         jTextFieldGerenteDepartamento.setText("cedula empleado (OPCIONAL)");
         jTextFieldGerenteDepartamento.setToolTipText("cedula empleado (OPCIONAL)");
 
         jButtonAgregarDepartamento.setText("Agregar");
+        jButtonAgregarDepartamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAgregarDepartamentoActionPerformed(evt);
+            }
+        });
 
         jButtonMostrarDepartamentos.setText("Mostrar");
+        jButtonMostrarDepartamentos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMostrarDepartamentosActionPerformed(evt);
+            }
+        });
 
         jLabel17.setText("Empresa");
 
-        jComboBoxEmpresasDepartamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxEmpresasDepartamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin Datos" }));
 
         jLabel18.setText("Ubicacion");
 
@@ -319,6 +343,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jLabel19.setText("Nombre");
 
+        jTextFieldCedulaEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldCedulaEmpleadoKeyReleased(evt);
+            }
+        });
+
+        jTextFieldNombreEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldNombreEmpleadoKeyReleased(evt);
+            }
+        });
+
         jButtonAgregarEmpleado.setText("Agregar");
         jButtonAgregarEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -327,6 +363,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         jButtonMostrarEmpleados.setText("Mostrar");
+        jButtonMostrarEmpleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMostrarEmpleadosActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Cedula");
 
@@ -344,7 +385,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jLabel22.setText("Departamento");
 
-        jComboBoxDepartamentosEmpleado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxDepartamentosEmpleado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin Datos" }));
+
+        jTextFieldSalarioEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldSalarioEmpleadoKeyReleased(evt);
+            }
+        });
 
         jComboBoxAnioNacEmpleado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2022", "2021", "2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950", "1949", "1948", "1947", "1946", "1945", "1944", "1943", "1942", "1941", "1940", "1939", "1938", "1937", "1936", "1935", "1934", "1933", "1932", "1931", "1930", "1929", "1928", "1927", "1926", "1925", "1924", "1923", "1922", "1921", "1920", "1919", "1918", "1917", "1916", "1915", "1914", "1913", "1912", "1911", "1910", "1909", "1908", "1907", "1906", "1905", "1904", "1903", "1902", "1901", "1900" }));
 
@@ -499,9 +546,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
     private void jButtonAgregarEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarEmpresaActionPerformed
         agregarEmpresa();
-        clean();
+        clearEmpresa();
+        cargarEmpresaCombo();
     }//GEN-LAST:event_jButtonAgregarEmpresaActionPerformed
 
     private void jButtonMostrarEmpresasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarEmpresasActionPerformed
@@ -510,7 +560,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             System.out.println(empresa.mostrarInformacion(LocalDate.now().getYear()));
         }
     }//GEN-LAST:event_jButtonMostrarEmpresasActionPerformed
-        // valida la entrada de solo numero en el campo "codigo"
+        // valida la entrada de solo numeros en el campo "codigo" de la clase empresa
     private void jTextFieldCodigoEmpresaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCodigoEmpresaKeyReleased
           if(!empresaController.validarSoloNumeros(evt.getKeyChar())){
             // se elimina el careacter que no sea un numero del jTextfield
@@ -521,7 +571,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_jTextFieldCodigoEmpresaKeyReleased
-
+        // valida solo texto en el campo "fundador" de la clase empresa
     private void jTextFieldFundadorEmpresaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldFundadorEmpresaKeyReleased
         if(!empresaController.validarSoloTexto(evt.getKeyChar())){
             // se elimina el careacter que no sea una letra del jTextfield
@@ -533,11 +583,67 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextFieldFundadorEmpresaKeyReleased
 
+    private void jButtonAgregarDepartamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarDepartamentoActionPerformed
+        agregarDepartamento();
+        clearDepartamento();
+        cargarDepartamentosCombo();
+    }//GEN-LAST:event_jButtonAgregarDepartamentoActionPerformed
+
+    private void jButtonMostrarDepartamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarDepartamentosActionPerformed
+        for (Departamento dep : departamentoController.listarDepartamentos()) {
+            System.out.println(dep.mostrarInformacion());
+        }
+    }//GEN-LAST:event_jButtonMostrarDepartamentosActionPerformed
+    //valida que solo se ingresen numeros en el campo codigo de departamento
+    private void jTextFieldCodigoDepartamentoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCodigoDepartamentoKeyReleased
+        if (!departamentoController.validarSoloNumeros(evt.getKeyChar())) {
+            if(jTextFieldCodigoDepartamento.getText().length() > 0){
+                String temp =jTextFieldCodigoDepartamento.getText().substring(0,jTextFieldCodigoDepartamento.getText().length()-1);
+                jTextFieldCodigoDepartamento.setText(temp);
+            }
+        }
+    }//GEN-LAST:event_jTextFieldCodigoDepartamentoKeyReleased
+
     private void jButtonAgregarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarEmpleadoActionPerformed
-        // TODO add your handling code here:
+        agregarEmpleado();
+        clearEmpleado();
     }//GEN-LAST:event_jButtonAgregarEmpleadoActionPerformed
 
-    
+    private void jButtonMostrarEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarEmpleadosActionPerformed
+        for (Empleado emp : empleadoController.listarEmpleados()) {
+            // se aniade el anio actual para calcular la edad del empleado
+            System.out.println(emp.mostrarInformacion(LocalDate.now().getYear()));
+        }
+    }//GEN-LAST:event_jButtonMostrarEmpleadosActionPerformed
+     // valida que solo se ingresen numeros en el campo cedula de la clase empleado
+    private void jTextFieldCedulaEmpleadoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCedulaEmpleadoKeyReleased
+        if (!empleadoController.validarSoloNumeros(evt.getKeyChar())) {
+            if(jTextFieldCedulaEmpleado.getText().length() > 0){
+                String temp =jTextFieldCedulaEmpleado.getText().substring(0,jTextFieldCedulaEmpleado.getText().length()-1);
+                jTextFieldCedulaEmpleado.setText(temp);
+            }
+        }
+    }//GEN-LAST:event_jTextFieldCedulaEmpleadoKeyReleased
+    // valida que solo se ingresen numeros en el campo Salario de la clase empleado
+    private void jTextFieldSalarioEmpleadoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSalarioEmpleadoKeyReleased
+        if (!empleadoController.validarSoloNumeros(evt.getKeyChar())) {
+            if(jTextFieldSalarioEmpleado.getText().length() > 0){
+                String temp =jTextFieldSalarioEmpleado.getText().substring(0,jTextFieldSalarioEmpleado.getText().length()-1);
+                jTextFieldSalarioEmpleado.setText(temp);
+            }
+        }
+    }//GEN-LAST:event_jTextFieldSalarioEmpleadoKeyReleased
+
+    private void jTextFieldNombreEmpleadoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNombreEmpleadoKeyReleased
+        if (!empleadoController.validarSoloTexto(evt.getKeyChar())) {
+            if(jTextFieldNombreEmpleado.getText().length() > 0){
+                String temp =jTextFieldNombreEmpleado.getText().substring(0,jTextFieldNombreEmpleado.getText().length()-1);
+                jTextFieldNombreEmpleado.setText(temp);
+            }
+        }
+    }//GEN-LAST:event_jTextFieldNombreEmpleadoKeyReleased
+
+    // EMPRESA
     
     public void agregarEmpresa(){
         
@@ -546,14 +652,77 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 Integer.parseInt(jComboBoxAnioEmpresa.getSelectedItem().toString()), (jComboBoxMesEmpresa.getSelectedIndex() +1), (jComboBoxDiaEmpresa.getSelectedIndex()+1) );
     }
     
-    // elmina los datos ya ingresados de los TextFields
-    public void clean(){
+    // elmina los datos ya ingresados de los TextFields de Empresa
+    public void clearEmpresa(){
         jTextFieldCodigoEmpresa.setText("");
         jTextFieldNombreEmpresa.setText("");
         jTextFieldDireccionEmpresa.setText("");
         jTextFieldFundadorEmpresa.setText("");
     }
     
+    //DEPARTAMENTO
+    // cargar lista de empresas en comboBox en Departamento se invoca al agregar empresa
+    public void cargarEmpresaCombo(){
+        jComboBoxEmpresasDepartamento.removeAllItems();
+        for(Empresa empresa: empresaController.listarEmpresas()){
+            jComboBoxEmpresasDepartamento.addItem(empresa.getCodigo()+" : "+empresa.getNombre());
+        }
+    }
+    
+    public void agregarDepartamento(){
+        departamentoController.crearDepartamento(Integer.parseInt(jTextFieldCodigoDepartamento.getText()), 
+                jTextFieldNombreDepartamento.getText(), getEmpresaFromComboBox(), jTextFieldUbicacionDepartamento.getText());
+    }
+    
+    public Empresa getEmpresaFromComboBox(){
+        if (!this.jComboBoxEmpresasDepartamento.getSelectedItem().toString().equalsIgnoreCase("Sin Datos")){
+            Empresa em = empresaController.listarEmpresas().get(jComboBoxEmpresasDepartamento.getSelectedIndex());
+            return em;
+        }
+        
+        return null;
+    }
+    
+    public void clearDepartamento(){
+        jTextFieldCodigoDepartamento.setText("");
+        jTextFieldNombreDepartamento.setText("");
+        jTextFieldGerenteDepartamento.setText("cedula empleado (OPCIONAL)");
+        jTextFieldUbicacionDepartamento.setText("");
+    }
+    
+   // EMPLEADO
+    // cargar Departamentos en comboBox en Empleado se invoca al agregar Departamento
+    public void cargarDepartamentosCombo(){
+        jComboBoxDepartamentosEmpleado.removeAllItems();
+        for (Departamento dep : departamentoController.listarDepartamentos()) {
+            jComboBoxDepartamentosEmpleado.addItem(dep.getCodigo()+" : "+dep.getNombre());
+        }
+    }
+    
+    public void agregarEmpleado(){
+        empleadoController.crearEmpleado(jTextFieldCedulaEmpleado.getText(), jTextFieldNombreEmpleado.getText(),
+                Integer.parseInt(jComboBoxAnioNacEmpleado.getSelectedItem().toString()), 
+                (jComboBoxMesNacEmpleado.getSelectedIndex()+1), (jComboBoxDiaNacEmpleado.getSelectedIndex()+1),
+                jComboBoxNacionalidadEmpleado.getSelectedItem().toString(), jTextFieldDireccionEmpleado.getText(),
+                jTextFieldCargoEmpleado.getText(), Float.parseFloat(jTextFieldSalarioEmpleado.getText()),getDepartamentoFromComboBox() );
+    }
+    
+    public Departamento getDepartamentoFromComboBox(){
+        if(!jComboBoxDepartamentosEmpleado.getSelectedItem().toString().equalsIgnoreCase("Sin Datos")){
+            Departamento dep = departamentoController.listarDepartamentos().get(jComboBoxDepartamentosEmpleado.getSelectedIndex());
+            return dep;
+        }
+        return null;
+    }
+    
+    public void clearEmpleado(){
+        jTextFieldCedulaEmpleado.setText("");
+        jTextFieldNombreEmpleado.setText("");
+        jTextFieldDireccionEmpleado.setText("");
+        jTextFieldCargoEmpleado.setText("");
+        jTextFieldSalarioEmpleado.setText("");
+     
+    }
     
     public static void main(String args[]) {
         
