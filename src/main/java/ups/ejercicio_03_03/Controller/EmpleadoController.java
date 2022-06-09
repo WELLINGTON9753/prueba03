@@ -34,12 +34,12 @@ public class EmpleadoController {
         return empleadoService.listarEmpleados();
     }
     
-    public Empleado getEmpladoByCedula(String cedula){
+    public Empleado getEmpleadoByCedula(String cedula){
         return empleadoService.getEmpleadoByCedula(cedula);
     }
     
-     public void cambiarDepartamento(String cedula, Departamento departamento){
-        empleadoService.cambiarDepartamento(cedula, departamento);
+     public void asignarDepartamento(String cedula, Departamento departamento){
+        empleadoService.asignarDepartamento(cedula, departamento);
     }
      
       // Metodos validacion

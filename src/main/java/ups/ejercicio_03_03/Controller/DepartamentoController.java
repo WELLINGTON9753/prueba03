@@ -34,6 +34,7 @@ public class DepartamentoController {
         
     }
     
+   
      // Metodos validacion
     
     // valida que solo se ingresen numeros en el campo "codigo"

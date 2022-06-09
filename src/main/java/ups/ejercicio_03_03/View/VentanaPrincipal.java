@@ -385,7 +385,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jLabel22.setText("Departamento");
 
-        jComboBoxDepartamentosEmpleado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin Datos" }));
+        jComboBoxDepartamentosEmpleado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin Asignar" }));
 
         jTextFieldSalarioEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -555,10 +555,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAgregarEmpresaActionPerformed
 
     private void jButtonMostrarEmpresasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarEmpresasActionPerformed
+        System.out.println("EMPRESAS:\n");
         for (Empresa empresa : empresaController.listarEmpresas()) {
             // se aniade fecha actual para mostrar la inforamacion de la empresa que incluye la antiguedad de la misma
+             
             System.out.println(empresa.mostrarInformacion(LocalDate.now().getYear()));
+            System.out.println("");
         }
+        System.out.println("----------------------------------------------------------------");
     }//GEN-LAST:event_jButtonMostrarEmpresasActionPerformed
         // valida la entrada de solo numeros en el campo "codigo" de la clase empresa
     private void jTextFieldCodigoEmpresaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCodigoEmpresaKeyReleased
@@ -590,9 +594,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAgregarDepartamentoActionPerformed
 
     private void jButtonMostrarDepartamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarDepartamentosActionPerformed
+        System.out.println("DEPARTAMENTOS:\n");
         for (Departamento dep : departamentoController.listarDepartamentos()) {
             System.out.println(dep.mostrarInformacion());
+            System.out.println("");
         }
+        System.out.println("----------------------------------------------------------------------");
     }//GEN-LAST:event_jButtonMostrarDepartamentosActionPerformed
     //valida que solo se ingresen numeros en el campo codigo de departamento
     private void jTextFieldCodigoDepartamentoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCodigoDepartamentoKeyReleased
@@ -610,10 +617,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAgregarEmpleadoActionPerformed
 
     private void jButtonMostrarEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarEmpleadosActionPerformed
+        System.out.println("EMPLEADOS:\n");
         for (Empleado emp : empleadoController.listarEmpleados()) {
             // se aniade el anio actual para calcular la edad del empleado
+            
             System.out.println(emp.mostrarInformacion(LocalDate.now().getYear()));
+            System.out.println("");
         }
+        System.out.println("----------------------------------------------------------------------");
     }//GEN-LAST:event_jButtonMostrarEmpleadosActionPerformed
      // valida que solo se ingresen numeros en el campo cedula de la clase empleado
     private void jTextFieldCedulaEmpleadoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCedulaEmpleadoKeyReleased
@@ -670,8 +681,27 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
     
     public void agregarDepartamento(){
-        departamentoController.crearDepartamento(Integer.parseInt(jTextFieldCodigoDepartamento.getText()), 
+        
+        var departamentoNuevo = departamentoController.crearDepartamento(Integer.parseInt(jTextFieldCodigoDepartamento.getText()), 
                 jTextFieldNombreDepartamento.getText(), getEmpresaFromComboBox(), jTextFieldUbicacionDepartamento.getText());
+        
+        // Si se tiene cedula del empleado en el campo gerente se le asigna a departamento
+        if (!jTextFieldGerenteDepartamento.getText().trim().equals("cedula empleado (OPCIONAL)")){
+           
+            var gerente = empleadoController.getEmpleadoByCedula(jTextFieldGerenteDepartamento.getText());
+            if (gerente != null) {
+                departamentoController.asignarGerenteDepartemento(departamentoNuevo.getCodigo(), gerente);
+                // a empleado gerente tambien se le asigna el departamento en caso de no pertenercer
+                empleadoController.asignarDepartamento(gerente.getCedula(), departamentoNuevo);
+                
+                System.out.println("Empleado: " +gerente.getCedula()+" : "+gerente.getNombre()+ "asignado como gerente en el departamento : "
+                    +departamentoNuevo.getNombre());
+                
+            } else{
+                System.out.println("Empleado no existe");
+            }
+            
+        }
     }
     
     public Empresa getEmpresaFromComboBox(){
@@ -694,6 +724,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // cargar Departamentos en comboBox en Empleado se invoca al agregar Departamento
     public void cargarDepartamentosCombo(){
         jComboBoxDepartamentosEmpleado.removeAllItems();
+        jComboBoxDepartamentosEmpleado.addItem("Sin Asignar");
         for (Departamento dep : departamentoController.listarDepartamentos()) {
             jComboBoxDepartamentosEmpleado.addItem(dep.getCodigo()+" : "+dep.getNombre());
         }
@@ -708,8 +739,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
     
     public Departamento getDepartamentoFromComboBox(){
-        if(!jComboBoxDepartamentosEmpleado.getSelectedItem().toString().equalsIgnoreCase("Sin Datos")){
-            Departamento dep = departamentoController.listarDepartamentos().get(jComboBoxDepartamentosEmpleado.getSelectedIndex());
+        if(!jComboBoxDepartamentosEmpleado.getSelectedItem().toString().equalsIgnoreCase("Sin Asignar")){
+            // Primer item del combo es "Sin Asignar" 
+            Departamento dep = departamentoController.listarDepartamentos().get(jComboBoxDepartamentosEmpleado.getSelectedIndex() -1);
             return dep;
         }
         return null;

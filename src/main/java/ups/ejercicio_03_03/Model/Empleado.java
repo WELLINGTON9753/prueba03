@@ -106,7 +106,10 @@ public class Empleado {
 
     @Override
     public String toString() {
-        return "Empleado{" + "cedula=" + cedula + ", nombre=" + nombre + ", fechaNacimiento=" + fechaNacimiento + ", nacionalidad=" + nacionalidad + ", direccion=" + direccion + ", cargo=" + cargo + ", salario=" + salario + ", fechaEntrada=" + fechaEntrada + ", departamento=" + departamento.getNombre()+" ";
+        if(this.departamento == null){
+            return "Empleado{" + "cedula = " + cedula + ", nombre = " + nombre + ", fechaNacimiento = " + fechaNacimiento + ", nacionalidad = " + nacionalidad + ", direccion = " + direccion + ",\n cargo=" + cargo + ", salario=" + salario + ", fechaEntrada = " + fechaEntrada + ", departamento = Sin Asignar ";
+        }
+        return "Empleado{" + "cedula = " + cedula + ", nombre = " + nombre + ", fechaNacimiento = " + fechaNacimiento + ", nacionalidad = " + nacionalidad + ", direccion = " + direccion + ",\n cargo = " + cargo + ", salario = " + salario + ", fechaEntrada = " + fechaEntrada + ", departamento =" + departamento.getNombre()+" ";
     }
     
     public int calcularEdad(int anioActual){
@@ -115,7 +118,7 @@ public class Empleado {
     }
     
     
-    public void cambiarDepartamento ( Departamento departamento) {
+    public void asignarDepartamento ( Departamento departamento) {
         this.departamento = departamento;
     }
     
