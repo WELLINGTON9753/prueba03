@@ -577,14 +577,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldCodigoEmpresaKeyReleased
         // valida solo texto en el campo "fundador" de la clase empresa
     private void jTextFieldFundadorEmpresaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldFundadorEmpresaKeyReleased
-        if(!empresaController.validarSoloTexto(evt.getKeyChar())){
-            // se elimina el careacter que no sea una letra del jTextfield
-            if(jTextFieldFundadorEmpresa.getText().length() > 0){
-                String temp = jTextFieldFundadorEmpresa.getText().substring(0, jTextFieldFundadorEmpresa.getText().length() -1);
-                jTextFieldFundadorEmpresa.setText(temp);
-            }
-            
-        }
+//        if(!empresaController.validarSoloTexto(evt.getKeyChar())){
+//            // se elimina el careacter que no sea una letra del jTextfield
+//            if(jTextFieldFundadorEmpresa.getText().length() > 0){
+//                String temp = jTextFieldFundadorEmpresa.getText().substring(0, jTextFieldFundadorEmpresa.getText().length() -1);
+//                jTextFieldFundadorEmpresa.setText(temp);
+//            }
+//            
+//        }
     }//GEN-LAST:event_jTextFieldFundadorEmpresaKeyReleased
 
     private void jButtonAgregarDepartamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarDepartamentoActionPerformed
@@ -646,12 +646,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldSalarioEmpleadoKeyReleased
 
     private void jTextFieldNombreEmpleadoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNombreEmpleadoKeyReleased
-        if (!empleadoController.validarSoloTexto(evt.getKeyChar())) {
-            if(jTextFieldNombreEmpleado.getText().length() > 0){
-                String temp =jTextFieldNombreEmpleado.getText().substring(0,jTextFieldNombreEmpleado.getText().length()-1);
-                jTextFieldNombreEmpleado.setText(temp);
-            }
-        }
+//        if (!empleadoController.validarSoloTexto(evt.getKeyChar())) {
+//            if(jTextFieldNombreEmpleado.getText().length() > 0){
+//                String temp =jTextFieldNombreEmpleado.getText().substring(0,jTextFieldNombreEmpleado.getText().length()-1);
+//                jTextFieldNombreEmpleado.setText(temp);
+//            }
+//        }
     }//GEN-LAST:event_jTextFieldNombreEmpleadoKeyReleased
 
     // EMPRESA
@@ -661,6 +661,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         empresaController.crearEmpresa(Integer.parseInt(jTextFieldCodigoEmpresa.getText()), jTextFieldNombreEmpresa.getText(), 
                 jTextFieldFundadorEmpresa.getText(), jComboBoxPaisesEmpresa.getSelectedItem().toString(),jTextFieldDireccionEmpresa.getText(), 
                 Integer.parseInt(jComboBoxAnioEmpresa.getSelectedItem().toString()), (jComboBoxMesEmpresa.getSelectedIndex() +1), (jComboBoxDiaEmpresa.getSelectedIndex()+1) );
+        System.out.println("Empresa agregada !");
     }
     
     // elmina los datos ya ingresados de los TextFields de Empresa
@@ -694,7 +695,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 // a empleado gerente tambien se le asigna el departamento en caso de no pertenercer
                 empleadoController.asignarDepartamento(gerente.getCedula(), departamentoNuevo);
                 
-                System.out.println("Empleado: " +gerente.getCedula()+" : "+gerente.getNombre()+ "asignado como gerente en el departamento : "
+                System.out.println("Empleado: " +gerente.getCedula()+" : "+gerente.getNombre()+ " asignado como gerente en el departamento : "
                     +departamentoNuevo.getNombre());
                 
             } else{
@@ -702,6 +703,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
             
         }
+        
+        System.out.println("Departamento agregado !");
     }
     
     public Empresa getEmpresaFromComboBox(){
@@ -736,6 +739,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 (jComboBoxMesNacEmpleado.getSelectedIndex()+1), (jComboBoxDiaNacEmpleado.getSelectedIndex()+1),
                 jComboBoxNacionalidadEmpleado.getSelectedItem().toString(), jTextFieldDireccionEmpleado.getText(),
                 jTextFieldCargoEmpleado.getText(), Float.parseFloat(jTextFieldSalarioEmpleado.getText()),getDepartamentoFromComboBox() );
+        System.out.println("Empleado agregado !");
     }
     
     public Departamento getDepartamentoFromComboBox(){

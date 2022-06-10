@@ -36,7 +36,17 @@ public class EmpresaController {
         
     }
     
-    // Metodos validacion
+    // Metodos privados validacion Empresa
+    
+    private boolean validarCodigo(int codigo){
+        return codigo > 0;
+    }
+    
+    private boolean validarNumMaximoCaracteres(String texto){
+        return texto.trim().length() < 150;
+    }
+    
+    // Metodos validacion KeyEvent
     
     // valida que solo se ingresen numeros en el campo "codigo"
     public boolean validarSoloNumeros(char codigo){

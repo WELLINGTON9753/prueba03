@@ -34,8 +34,18 @@ public class DepartamentoController {
         
     }
     
+    // Metodos privados validacion departamento:
+    
+    private boolean validarCodigo(int codigo){
+        return codigo > 0;
+    }
+    
+    private boolean validarNumMaximoCaracters(String texto){
+        return texto.length() <= 200;
+    }
+
    
-     // Metodos validacion
+     // Metodos validacion KeyEvent
     
     // valida que solo se ingresen numeros en el campo "codigo"
     public boolean validarSoloNumeros(char codigo){

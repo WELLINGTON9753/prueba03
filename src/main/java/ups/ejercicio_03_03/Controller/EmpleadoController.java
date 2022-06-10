@@ -42,7 +42,17 @@ public class EmpleadoController {
         empleadoService.asignarDepartamento(cedula, departamento);
     }
      
-      // Metodos validacion
+     // Metodos privados validacion datos Empleado
+    private boolean validarNumDigitosCedula(String cedula){
+        
+        return cedula.trim().length() == 10;
+    }
+    // numero maximo de caracteres en los Textfield : 100 caracteres max
+    private boolean validarNumMaxCaracteres(String texto){
+        
+        return texto.trim().length() <= 100;
+    }
+      // Metodos validacion KeyEvent
     
     // valida que solo se ingresen numeros en el campo "cedula"
     public boolean validarSoloNumeros(char codigo){
